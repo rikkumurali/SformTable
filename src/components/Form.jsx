@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import './Form.css'
+import TableUi from './TableUi'
 
 const Form = () => {
   const [inputs, setInputs] = useState({});
+  const [click, setClick] = useState(false);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -12,10 +14,10 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setClick(true);
     console.log(inputs);
     alert(`Registration Successfully: ${inputs.name}`);
   }
-
   console.log('Name:', inputs.name)
   console.log('Age:', inputs.age)
   console.log('E-mail:', inputs.email)
@@ -86,8 +88,12 @@ const Form = () => {
           </label>
 
           <button onClick={handleSubmit}>REGISTER</button>
+
         </form>
       </div>
+
+      <TableUi data={inputs} ndata={click} />
+
     </>
   )
 }
